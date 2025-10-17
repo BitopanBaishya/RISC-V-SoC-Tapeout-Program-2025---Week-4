@@ -1,21 +1,15 @@
-# Week 4: CMOS Circuit Design (sky130-style)
+# Day 1: Basics of NMOS drain current ($$I_D$$) vs Drain-to-Source voltage $$(V_{DS})$$
  
-The focus of this week is to 
+The focus of today is to 
 
 ---
 
 ## 📜 Table of Contents
-[📋 Prerequisites](#-prerequisites) <br>
 [1. Introduction to Circuit Design and SPICE Simulation](#1-introduction-to-circuit-design-and-spice-simulation)<br>
 [2. MOSFET Fundamentals: The Heart of SPICE Simulations](#2-mosfet-fundamentals-the-heart-of-spice-simulations)<br>
 [3. MOSFET Modes of Operation & Current Derivations](#3-mosfet-modes-of-operation--current-derivations)<br>
 [4. SPICE Simulation Setup and Model Parameters](#4-spice-simulation-setup-and-model-parameters)<br>
-
----
-
-## 📋 Prerequisites
-- Basic understanding of Verilog codes.
-- Basic understanding of Linux commands.
+[5. Labs: Introductory SPICE Simulations](#5-labs-introductory-spice-simulations)<br>
 
 ---
 
@@ -225,7 +219,7 @@ $$
 and since $$E(x) = -\frac{dV(x)}{dx}$$:
 
 $$
-I_D = \mu_n \cdot W \cdot C_{ox} \, \frac{(V_{GS} - V_{th}) - V(x)}{dx/dV(x)}
+I_D = \mu_n \cdot W \cdot C_{ox} \left[ (V_{GS} - V_{th}) - V(x) \right] \left( \frac{dV(x)}{dx} \right)
 $$
 
 To find the total drain current, this expression is integrated across the channel length.
@@ -376,6 +370,126 @@ Then, include it in your SPICE netlist as follows:
 
 Here, `CMOS_MODELS` refers to the section name inside the `.mod` file (`.lib cmos_models` ... `.endl`).
 
+---
+
+## 5. Labs: Introductory SPICE Simulations.
+
+### <ins>1. Installing Ngspice on Ubuntu</ins>
+Before running SPICE simulations, we first need to install Ngspice, an open-source SPICE simulator widely used for circuit analysis and device characterization.<br>
+<ins>*Step-by-Step Installation Guide*</ins>
+1. Download the Ngspice Tarball<br>
+   Visit the following page and download the latest release of Ngspice: [https://sourceforge.net/projects/ngspice/files/](https://sourceforge.net/projects/ngspice/files/)
+2. Extract the Tarball<br>
+   Open a terminal in the directory where the file was downloaded and run:
+   ```
+   tar -zxvf ngspice-45.2.tar.gz
+   cd ngspice-45.2
+   ```
+3. Create a Release Directory and Configure<br>
+   ```
+   mkdir release
+   cd release
+   ../configure --with-x --with-readline=yes --disable-debug   
+   ```
+4. Build Ngspice<br>
+   ```
+   make  
+   ```
+5. Install Ngspice System-Wide<br>
+   ```
+   sudo make install 
+   ```
+6. Verify Installation<br>
+   Once installation is complete, run the following command to confirm:
+   ```
+   ngspice
+   ```
+
+   If the installation was successful, you’ll see a message similar to:
+   <div align="center">
+     <img src="Images/SPICE_InstallationCheck.png" alt="Alt Text" width="1000"/>
+   </div>
+
+### <ins>2. Setting Up the SPICE Simulation Environment</ins>
+Now that Ngspice is successfully installed, the next step is to set up our SPICE simulation environment by cloning a repository that contains all the required netlists, model files, and example circuits.
+
+1. **Cloning the Repository**<br>
+   Start by cloning the official Sky130 Circuit Design Workshop repository by Kunal Ghosh. This repo contains pre-written SPICE files and model libraries based on the SkyWater 130nm technology.
+   ```
+   git clone https://github.com/kunalg123/sky130CircuitDesignWorkshop.git
+   cd sky130CircuitDesignWorkshop
+   ```
+
+2. **Repository Structure Overview**<br>
+   Here’s what the folder hierarchy looks like once the repository is cloned:
+   ```
+   sky130CircuitDesignWorkshop/
+   │
+   ├── design/
+   │   ├── sky130_fd_pr/
+   │   │   ├── cells/
+   │   │   │   ├── nfet_01v8/
+   │   │   │   │   └── <various .spice files>
+   │   │   │   └── pfet_01v8/
+   │   │   │       └── <various .spice files>
+   │   │   ├── models/
+   │   │   │   ├── parameters/
+   │   │   │   │   └── <various .spice files>
+   │   │   │   ├── sky130.lib.spice
+   │   │   │   └── all.spice
+   │   │   └── ...
+   │   └── <various SPICE netlists>
+   │
+   └── README.md
+   ```
+
+### <ins>3. Lab 1 - NMOS I<sub>D</sub>–V<sub>GS</sub> SPICE Simulation</ins>
+In this first lab, we’ll perform a DC simulation of an NMOS transistor to observe the Drain Current (I<sub>D</sub>) vs Gate Voltage (V<sub>GS</sub>) characteristics using Ngspice.<br>
+This simulation helps visualize how the transistor transitions through different regions of operation — cutoff, linear, and saturation — as V<sub>GS</sub> increases.
+
+1. **Step 1: Navigating to the Design Folder**<br>
+   Open a terminal and move into the cloned repository’s `design` directory:
+   ```
+   cd sky130CircuitDesignWorkshop/design
+   ```
+
+2. **Step 2: Running the SPICE Netlist**<br>
+   ```
+   ngspice day1_nfet_idvds_L2_W5.spice
+   ```
+
+   This command launches Ngspice, which loads the `.spice` netlist file describing the NMOS test circuit.
+
+3. **Step 3: Plotting the Drain Current**<br>
+   Once inside the Ngspice interactive shell, plot the drain current using:
+   ```
+   plot -vdd#branch
+   ```
+
+   <ins>*Explanation:*</ins><br>
+   The command plot `-vdd#branch` tells Ngspice to plot the negative current through the voltage source Vdd — effectively giving the drain current (I<sub>D</sub>) as the circuit’s output current. The negative sign is used because SPICE measures current entering the positive terminal of the voltage source, while we are interested in current flowing out of the drain.
+
+4. **Step 4: Viewing the Output**<br>
+   The output is the I<sub>D</sub> vs V<sub>GS</sub> curve, which demonstrates how the NMOS device behaves as the gate voltage increases.
+   <div align="center">
+     <img src="Images/day1_nfet_idvds_L2_W5.spice_IDvsVD.png" alt="Alt Text" width="1000"/>
+   </div>
+
+5. **Step 5: Graph Observation**<br>
+   The plot shows I<sub>D</sub> (µA) on the Y-axis and V<sub>DS</sub> (V) on the X-axis, for various V<sub>GS</sub> levels (0 V → 1.8 V, step 0.2 V).
+   - The threshold voltage (V<sub>TH</sub>) of the NMOS transistor is approximately 0.55 V.
+   - For V<sub>GS</sub> < 0.55 V, the transistor remains off (cutoff region), and I<sub>D</sub> ≈ 0 A — hence no visible curve.
+   - At V<sub>GS</sub> = 0.6 V, a very small drain current appears, indicating that the transistor has just entered weak inversion / near-cutoff.
+   - For V<sub>GS</sub> > 0.6 V, the transistor starts conducting significantly — the curves rise quickly with increasing V<sub>DS</sub>, first showing linear (ohmic) behavior and then flattening into saturation as V<sub>DS</sub> ≈ V<sub>GS</sub> – V<sub>TH</sub>.
+   - Increasing V<sub>GS</sub> shifts the curve upward, showing higher channel conductance and stronger drive capability.
+  
+     *This plot confirms that the transistor model and biasing setup in Ngspice are functioning correctly. The smooth transition from linear to saturation regions validates the SPICE NMOS model behavior.*
+
+6. **Step 6: Netlist Reference**<br>
+   For reference, the SPICE netlist file used for this simulation can be found in your cloned repository at:
+   ```
+   sky130CircuitDesignWorkshop/design/day1_nfet_idvds_L2_W5.spice
+   ```
 
 
 
@@ -392,3 +506,48 @@ Here, `CMOS_MODELS` refers to the section name inside the `.mod` file (`.lib cmo
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
