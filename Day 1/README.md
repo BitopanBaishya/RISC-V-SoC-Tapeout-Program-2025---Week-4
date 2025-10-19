@@ -9,7 +9,7 @@ The focus of today is to step into the analog world and explore how MOSFETs trul
 [2. MOSFET Fundamentals: The Heart of SPICE Simulations](#2-mosfet-fundamentals-the-heart-of-spice-simulations)<br>
 [3. MOSFET Modes of Operation & Current Derivations](#3-mosfet-modes-of-operation--current-derivations)<br>
 [4. SPICE Simulation Setup and Model Parameters](#4-spice-simulation-setup-and-model-parameters)<br>
-[5. Labs: Introductory SPICE Simulations](#5-labs-introductory-spice-simulations)<br>
+[5. Lab: Introductory SPICE Simulation](#5-labs-introductory-spice-simulations)<br>
 
 ---
 
