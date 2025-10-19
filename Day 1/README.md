@@ -1,4 +1,4 @@
-# Day 1: Basics of NMOS drain current ($$I_D$$) vs Drain-to-Source voltage $$(V_{DS})$$
+# Day 1: Introduction to SPICE Simulation & MOSFET I–V Characteristics
  
 The focus of today is to step into the analog world and explore how MOSFETs truly behave beneath the surface — through the lens of SPICE simulations. We begin by understanding the fundamentals of circuit design and how SPICE serves as the designer’s microscope to visualize transistor behavior. Then, we unravel the physics of the NMOS transistor — its structure, threshold voltage, modes of operation, and current equations. Finally, we perform a hands-on SPICE lab to simulate the NMOS drain current ($I_D$) versus drain-to-source voltage ($V_{DS}$), validating theory with real device characteristics.
 
