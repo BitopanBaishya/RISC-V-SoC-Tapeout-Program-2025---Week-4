@@ -62,7 +62,7 @@ The outputs from the above SPICE simulations are as follows:
    * $$\text{Graphical Method: Draw a 45° line on the VTC and find the intersection with the curve } (V_{in} = V_{out}).$$
    * For example, Switching Threshold for the above two SPICE simulations are as follows:
      <div align="center">
-       <img src="https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/e34b89f39a0dca5e8336ee7e06575a3481064658/Day%203/Images/vtc_ThresholdVoltage.png" alt="" width="1000"/>
+       <img src="https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/19a7671ed5175a8c3312529d8b69fb9b757c95c4/Day%203/Images/vtc_ThresholdVoltage.png" alt="" width="1000"/>
        <p align="center"><em>Determination of Threshold Voltage from the Voltage Transfer Characteristics</em></p>
      </div>
 
