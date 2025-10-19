@@ -46,7 +46,7 @@ The parameters of the two MOSFETs are as follows:
 | Sweep Variable | V<sub>GS</sub> | V<sub>GS</sub> |
 
 ### <ins>2. SPICE Netlist for the Short Channel MOSFET</ins>
-The SPICE Netlist for the short-channel MOSFET used in this simulation is not present in the `design` directory by default. You may find it [here](day2_nfet_idvds_L025_W0625.spice) to download it and add it in the `design` directory before SPICE simulations.
+The SPICE Netlist for the short-channel MOSFET used in this simulation is not present in the `design` directory by default. You may find it [here](https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/73d8ccd61b456750df6772c754da6be42f90a34a/Day%202/SPICE%20Netlists/day2_nfet_idvds_L025_W0625.spice) to download it and add it in the `design` directory before SPICE simulations.
 
 
 
