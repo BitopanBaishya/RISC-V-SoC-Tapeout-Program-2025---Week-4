@@ -48,17 +48,26 @@ The parameters of the two MOSFETs are as follows:
 | Sweep Variable | V<sub>GS</sub> | V<sub>GS</sub> |
 
 ### <ins>2. SPICE Netlist for the Short Channel MOSFET</ins>
-The SPICE Netlist for the short-channel MOSFET used in this simulation is not present in the `design` directory by default. You may find it [here](https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/73d8ccd61b456750df6772c754da6be42f90a34a/Day%202/SPICE%20Netlists/day2_nfet_idvds_L025_W0625.spice) to download it and add it in the `design` directory before SPICE simulations.<br>
-After that, run the SPICE simulations for this file following the same steps as in the Day-1 simulation, and obtain the I<sub>D</sub> vs V<sub>GS</sub> characteristics.
+The SPICE Netlist for the short-channel MOSFET used in this Id vs Vds simulation is not present in the `design` directory by default. You may find it [here](https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/73d8ccd61b456750df6772c754da6be42f90a34a/Day%202/SPICE%20Netlists/day2_nfet_idvds_L025_W0625.spice) to download it and add it in the `design` directory before SPICE simulations.<br>
+After that, run the SPICE simulations for this file following the same steps as in the Day-1 simulation, and obtain the I<sub>D</sub> vs V<sub>DS</sub> characteristics.<br>
+Similarly, the SPICE Netlists for both the Short-Channel and Long Channel Netlists to obtain the Id vs Vgs characteristics are [this](https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/bb149b45424024df15d14064399c9d7a416ba64b/Day%202/SPICE%20Netlists/day2_nfet_idvgs_L025_W0625.spice) and [this](https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/bb149b45424024df15d14064399c9d7a416ba64b/Day%202/SPICE%20Netlists/day2_nfet_idvgs_L2_W5.spice) respectively.
 
 ### <ins>3. The Outputs</ins>
 <div>
   <img src="https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/2b0bec34903e8d7d90f692e37952f504e40dfea5/Day%202/Images/day2_nfet_idvds_L2_W5.spice_IDvsVD.png" alt="NMOS Structure" width="1000"/>
-  <p align="center"><em>Figure 1: I<sub>D</sub> vs V<sub>GS</sub> characteristics for long-channel MOSFET (W=5 µm, L=2 µm).</em></p>
+  <p align="center"><em>Figure 1: I<sub>D</sub> vs V<sub>DS</sub> characteristics for long-channel MOSFET (W=5 µm, L=2 µm).</em></p>
 </div>
 <div>
   <img src="https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/2b0bec34903e8d7d90f692e37952f504e40dfea5/Day%202/Images/day2_nfet_idvds_L025_W0625.spice_IDvsVD.png" alt="NMOS Structure" width="1000"/>
-  <p align="center"><em>Figure 2: I<sub>D</sub> vs V<sub>GS</sub> characteristics for short-channel MOSFET  (W=0.625 µm, L=0.25 µm).</em></p>
+  <p align="center"><em>Figure 2: I<sub>D</sub> vs V<sub>DS</sub> characteristics for short-channel MOSFET  (W=0.625 µm, L=0.25 µm).</em></p>
+</div>
+<div>
+  <img src="https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/bb149b45424024df15d14064399c9d7a416ba64b/Day%202/Images/day2_nfet_idvgs_L2_W5.spice_IDvsVG.png" alt="NMOS Structure" width="1000"/>
+  <p align="center"><em>Figure 3: I<sub>D</sub> vs V<sub>GS</sub> characteristics for short-channel MOSFET  (W=5 µm, L=2 µm).</em></p>
+</div>
+<div>
+  <img src="https://github.com/BitopanBaishya/RISC-V-SoC-Tapeout-Program-2025---Week-4/blob/bb149b45424024df15d14064399c9d7a416ba64b/Day%202/Images/day2_nfet_idvgs_L025_W0625.spice_IDvsVG.png" alt="NMOS Structure" width="1000"/>
+  <p align="center"><em>Figure 4: I<sub>D</sub> vs V<sub>GS</sub> characteristics for short-channel MOSFET  (W=0.625 µm, L=0.25 µm).</em></p>
 </div>
 
 ### <ins>4. Analysis of the Output Characteristics</ins>
